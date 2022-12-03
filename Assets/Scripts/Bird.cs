@@ -5,24 +5,22 @@ using UnityEngine.InputSystem;
 
 public class Bird : MonoBehaviour {
 
-    private Rigidbody2D myRigidbody; 
+    [SerializeField] Rigidbody2D myRigidbody; 
     [SerializeField] float upVelocity; 
-    private CharacterController controller; 
+    [SerializeField] PlayerInput playerInput; 
     private GameManager manager; 
-    private PlayerInput playerInput; 
     private InputAction moveAction; 
 
     private void Awake() {
-        controller = this.gameObject.GetComponent<CharacterController>(); 
         playerInput = this.gameObject.GetComponent<PlayerInput>(); 
 
         moveAction = playerInput.actions["Fire"]; 
-
-        myRigidbody = this.gameObject.GetComponent<Rigidbody2D>(); 
     }
 
     void Start() {
         manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>(); 
+        myRigidbody = this.gameObject.GetComponent<Rigidbody2D>(); 
+        moveAction.Enable(); 
     }
 
     private void OnEnable() {
@@ -46,6 +44,7 @@ public class Bird : MonoBehaviour {
     }
 
     public void KillBird() {
-        this.gameObject.SetActive(false); 
+        // this.gameObject.SetActive(false); 
+        moveAction.Disable(); 
     }
 }
