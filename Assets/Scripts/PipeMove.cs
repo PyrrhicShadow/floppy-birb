@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeMove : MonoBehaviour
-{
+public class PipeMove : MonoBehaviour {
+
+    [SerializeField] float moveSpeed; 
+    [SerializeField] float deadZone; 
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime; 
+
+        if (transform.position.x < deadZone) {
+            Destroy(gameObject); 
+        }
     }
 }
