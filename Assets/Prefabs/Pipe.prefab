@@ -82,7 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217064183502439857}
   - component: {fileID: 1217064183502439856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe
   m_TagString: blocking
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1217064183526118170}
   - component: {fileID: 1217064183526118164}
   - component: {fileID: 1217064183526118165}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 1217064184542362244}
   - component: {fileID: 1217064184542362246}
   - component: {fileID: 1217064184542362247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

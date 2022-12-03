@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour {
     private Rigidbody2D myRigidbody; 
     [SerializeField] float upVelocity; 
     private CharacterController controller; 
+    private GameManager manager; 
     private PlayerInput playerInput; 
     private InputAction moveAction; 
 
@@ -20,20 +21,31 @@ public class Bird : MonoBehaviour {
         myRigidbody = this.gameObject.GetComponent<Rigidbody2D>(); 
     }
 
+    void Start() {
+        manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>(); 
+    }
+
     private void OnEnable() {
         moveAction.performed += _ => Jump(); 
+
     }
 
     private void OnDisable() {
         moveAction.performed -= _ => Jump(); 
     }
 
-    // Update is called once per frame
-    void FixedUpdate() {
-        // myRigidbody.velocity = Vector2.up * upVelocity; 
-    }
-
     public void Jump() {
         myRigidbody.velocity = Vector2.up * upVelocity; 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.layer == 6) {
+            manager.GameOver(); 
+            KillBird(); 
+        }
+    }
+
+    public void KillBird() {
+        this.gameObject.SetActive(false); 
     }
 }
