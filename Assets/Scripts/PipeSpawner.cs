@@ -8,21 +8,29 @@ public class PipeSpawner : MonoBehaviour {
     [SerializeField] float spawnRate; 
     [SerializeField] float heightOffset; 
     private float timer = 0; 
+    private bool spawning = false; 
 
     // Start is called before the first frame update
     void Start() {
-        SpawnPipe(); 
+        
     }
 
     // Update is called once per frame
     void Update() {
-        if (timer < spawnRate) {
-            timer = timer + Time.deltaTime; 
+        if (spawning) {
+            if (timer < spawnRate) {
+                timer = timer + Time.deltaTime; 
+            }
+            else {
+                SpawnPipe(); 
+                timer = 0; 
+            }
         }
-        else {
-            SpawnPipe(); 
-            timer = 0; 
-        }
+    }
+
+    public void Begin() {
+        spawning = true; 
+        SpawnPipe(); 
     }
 
     private void SpawnPipe() {

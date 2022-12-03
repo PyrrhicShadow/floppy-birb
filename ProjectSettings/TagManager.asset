@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - blocking
+  - Spawner
+  - AudioController
   layers:
   - Default
   - TransparentFX

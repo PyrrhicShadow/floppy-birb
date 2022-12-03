@@ -5,22 +5,28 @@ using UnityEngine.InputSystem;
 
 public class Bird : MonoBehaviour {
 
-    [SerializeField] Rigidbody2D myRigidbody; 
+    [SerializeField] Rigidbody2D rb; 
+    [SerializeField] Collider2D col; 
     [SerializeField] float upVelocity; 
+    [SerializeField] float birdScale; 
     [SerializeField] PlayerInput playerInput; 
     private GameManager manager; 
     private InputAction moveAction; 
 
     private void Awake() {
-        playerInput = this.gameObject.GetComponent<PlayerInput>(); 
-
         moveAction = playerInput.actions["Fire"]; 
     }
 
     void Start() {
         manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>(); 
-        myRigidbody = this.gameObject.GetComponent<Rigidbody2D>(); 
+        transform.localScale = Vector3.one * birdScale; 
+        moveAction.Disable(); 
+    }
+
+    public void Begin() {
         moveAction.Enable(); 
+        col.enabled = true; 
+        rb.WakeUp(); 
     }
 
     private void OnEnable() {
@@ -33,7 +39,9 @@ public class Bird : MonoBehaviour {
     }
 
     public void Jump() {
-        myRigidbody.velocity = Vector2.up * upVelocity; 
+        if (rb != null) {
+            rb.velocity = Vector2.up * upVelocity; 
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -45,6 +53,8 @@ public class Bird : MonoBehaviour {
 
     public void KillBird() {
         // this.gameObject.SetActive(false); 
+        transform.localScale = new Vector3(birdScale, -1 * birdScale, birdScale); 
         moveAction.Disable(); 
+        col.enabled = false; 
     }
 }
