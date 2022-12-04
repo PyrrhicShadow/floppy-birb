@@ -6,3 +6,5 @@ Following the Game Maker's Toolkit's Unity tutorial on [YouTube](https://www.you
 
 Play now! 
 * [Browser](https://pyrrhicshadow.github.io/floppy-birb/Builds/Floppy%20Birb%20WebGL/index.html)
+
+All credit can be found on the [Sources](https://pyrrhicshadow.github.io/floppy-birb/sources) page.
