@@ -12,6 +12,7 @@ public class Bird : MonoBehaviour {
     [SerializeField] PlayerInput playerInput; 
     private GameManager manager; 
     private InputAction moveAction; 
+    private Animator animator; 
 
     private void Awake() {
         moveAction = playerInput.actions["Fire"]; 
@@ -19,8 +20,15 @@ public class Bird : MonoBehaviour {
 
     void Start() {
         manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>(); 
+        animator = this.gameObject.GetComponent<Animator>(); 
         transform.localScale = Vector3.one * birdScale; 
         // moveAction.Disable(); 
+    }
+
+    void Update() {
+        if (this.transform.position.y < -10) {
+            rb.Sleep(); 
+        }
     }
 
     public void Begin() {
@@ -41,7 +49,17 @@ public class Bird : MonoBehaviour {
     public void Jump() {
         if (rb != null) {
             rb.velocity = Vector2.up * upVelocity; 
+            // animator.SetTrigger("flap"); 
+            StartCoroutine(FlapCo()); 
         }
+    }
+
+    private IEnumerator FlapCo() { 
+        animator.SetBool("flap", true);
+        for (int i = 0; i < 5; i++) {
+            yield return new WaitForFixedUpdate(); 
+        }
+        animator.SetBool("flap", false); 
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

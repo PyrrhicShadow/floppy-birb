@@ -44,6 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Clouds
+    uniqueID: 2244497833
+    locked: 0
+  - name: Pipes
+    uniqueID: 496225505
+    locked: 0
+  - name: Player
+    uniqueID: 1677975885
+    locked: 0
   - name: UI
     uniqueID: 307893055
     locked: 0
