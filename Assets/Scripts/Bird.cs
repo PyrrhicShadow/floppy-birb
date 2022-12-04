@@ -20,7 +20,7 @@ public class Bird : MonoBehaviour {
     void Start() {
         manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>(); 
         transform.localScale = Vector3.one * birdScale; 
-        moveAction.Disable(); 
+        // moveAction.Disable(); 
     }
 
     public void Begin() {
@@ -55,6 +55,6 @@ public class Bird : MonoBehaviour {
         // this.gameObject.SetActive(false); 
         transform.localScale = new Vector3(birdScale, -1 * birdScale, birdScale); 
         moveAction.Disable(); 
-        col.enabled = false; 
+        // col.enabled = false; 
     }
 }

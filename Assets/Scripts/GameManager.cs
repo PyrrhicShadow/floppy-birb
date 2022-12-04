@@ -8,20 +8,21 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] int playerScore; 
     [SerializeField] Text scoreText; 
+    [SerializeField] Text highScoreText; 
     [SerializeField] GameObject gameOverScreen; 
-    [SerializeField] GameObject gameStartScreen; 
     [SerializeField] Bird bird; 
     [SerializeField] PipeSpawner pipeSpawner; 
     private AudioManager audioManager; 
 
     private void Start() {
         audioManager = GameObject.FindWithTag("AudioController").GetComponent<AudioManager>(); 
+        highScoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString(); 
+        Begin(); 
     }
 
     public void Begin() {
         bird.Begin(); 
         pipeSpawner.Begin(); 
-        gameStartScreen.SetActive(false); 
     }
 
     [ContextMenu("Add Score")]
@@ -38,5 +39,6 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver() {
         gameOverScreen.SetActive(true); 
+        PlayerPrefs.SetInt("highscore", playerScore); 
     }
 }
